@@ -81,8 +81,7 @@ jma_weather = jma_json[0]["timeSeries"][0]["areas"][0]["weathers"][1]
 
 
 def lambda_handler(event, context):
-    url = "https://hooks.slack.com/services/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"
-    
+    url = "slack着信用webhookURL"
     items = response['Items']
     for item in items:
         place = item['prefecture']
