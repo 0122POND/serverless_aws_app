@@ -6,16 +6,11 @@ import json
 
 http = urllib3.PoolManager()
 
-#TableName = os.environ['TableName']
 dynamodb = boto3.resource("dynamodb", region_name='ap-northeast-1')
 
 table = boto3.resource('dynamodb').Table('places')
-response = table.scan(Limit=1, ReturnConsumedCapacity='TOTAL')
+response = table.scan(Limit=3, ReturnConsumedCapacity='TOTAL')
 
-#items = response['prefecture']
-
-
-#place = '埼玉県' #ここを入力された都道府県に変更するように設定する。
 
 # エリアコード
 area_dic = {'北海道/釧路':'014100',
@@ -76,7 +71,6 @@ jma_url = f'https://www.jma.go.jp/bosai/forecast/data/forecast/{place_id}.json'
 jma_json = requests.get(jma_url).json()
 jma_date = jma_json[0]["timeSeries"][0]["timeDefines"][1]
 jma_weather = jma_json[0]["timeSeries"][0]["areas"][0]["weathers"][1]
-#jma_rainfall = jma_json["Feature"][0]["Property"]["WeatherList"]["Weather"][0]["Rainfall"]
 
 
 
